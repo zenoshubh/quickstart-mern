@@ -1,0 +1,14 @@
+{
+  "name": "quickstart-mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "bin": {
+    "quickstart-mern": "src/index.js"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
