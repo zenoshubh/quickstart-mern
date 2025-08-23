@@ -12,16 +12,16 @@ if (!mongoUri) {
     // No MongoDB URI, run server without DB
     // Error handling for server can be done via process events or inside listen callback if needed.
     app.listen(process.env.PORT || 8000, () => {
-        console.log(`Server is running at port ${process.env.PORT} (no database connected)`);
+        console.log(`🚀Server is running at port ${process.env.PORT} (no database connected)`);
     });
 } else {
     connectDB()
         .then(() => {
             app.listen(process.env.PORT || 8000, () => {
-                console.log(`Server is running at port ${process.env.PORT}`);
+                console.log(`🚀Server is running at port ${process.env.PORT}`);
             });
         })
         .catch((err: Error) => {
-            console.log("MONGODB connection Failed !!! ", err);
+            console.log("❌MONGODB connection Failed !!! ", err);
         });
 }
