@@ -3,6 +3,7 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import { confirm } from "@inquirer/prompts";
 import chalk from "chalk";
+import ora from "ora";
 
 import { log } from "../utils/logger.js";
 import { validateTemplateExists, isMongoUriValid } from "../utils/validators.js";
@@ -93,7 +94,7 @@ export class ProjectSetupService {
   }
 
   async copyTemplateFiles() {
-    const spinner = require("ora")("Copying template files...").start();
+    const spinner = ora("Copying template files...").start();
     
     try {
       fs.mkdirSync(this.projectDir, { recursive: true });

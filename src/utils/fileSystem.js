@@ -42,29 +42,29 @@ export function createEnvFiles(clientPath, serverPath, config) {
 }
 
 export function updateEnvFiles(clientPath, serverPath, config) {
-  const { frontendPort, backendPort } = config;
+  const { frontend, backend } = config;
   
   // Update client .env
   fs.writeFileSync(
     clientPath,
-    `VITE_REACT_APP_API_URL=http://localhost:${backendPort}\nVITE_PORT=${frontendPort}\n`
+    `VITE_REACT_APP_API_URL=http://localhost:${backend}\nVITE_PORT=${frontend}\n`
   );
   
   // Update server .env
   let serverEnvContent = fs.readFileSync(serverPath, "utf-8");
   serverEnvContent = serverEnvContent.replace(
     /CORS_ORIGIN\s*=\s*["']?http:\/\/localhost:\d+["']?/,
-    `CORS_ORIGIN="http://localhost:${frontendPort}"`
+    `CORS_ORIGIN="http://localhost:${frontend}"`
   );
   serverEnvContent = serverEnvContent.replace(
     /PORT\s*=\s*\d+/,
-    `PORT=${backendPort}`
+    `PORT=${backend}`
   );
   fs.writeFileSync(serverPath, serverEnvContent);
 }
 
 export function createRootPackageJson(projectDir, projectName, useTypeScript, ports) {
-  const { frontendPort } = ports;
+  const { frontend } = ports;
   
   const rootPkg = {
     name: `${projectName}-root`,
@@ -75,7 +75,7 @@ export function createRootPackageJson(projectDir, projectName, useTypeScript, po
       "install-client": "cd client && npm install",
       "install-server": "cd server && npm install",
       "dev": "concurrently \"npm run dev-client\" \"npm run dev-server\"",
-      "dev-client": `cd client && npm run dev -- --port ${frontendPort}`,
+      "dev-client": `cd client && npm run dev -- --port ${frontend}`,
       "dev-server": "cd server && npm run dev",
       "build": "cd client && npm run build",
       "build-server": "cd server && npm run build"

@@ -61,12 +61,12 @@ export async function installDependencies() {
 }
 
 export async function startDevelopmentServers(ports) {
-  const { frontendPort, backendPort } = ports;
+  const { frontend, backend } = ports;
   
   console.log();
   log.highlight(`Starting development servers...`);
-  log.info(`Frontend: http://localhost:${frontendPort}`);
-  log.info(`Backend: http://localhost:${backendPort}`);
+  log.info(`Frontend: http://localhost:${frontend}`);
+  log.info(`Backend: http://localhost:${backend}`);
   log.warning("Press Ctrl+C to stop both servers");
   
   try {
