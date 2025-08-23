@@ -7,6 +7,12 @@
 
 > **The fastest way to bootstrap a production-ready MERN stack application**
 
+## 📦 Installation
+
+```bash
+npx quickstart-mern
+```
+
 QuickStart MERN is a powerful CLI tool that generates a complete, production-ready MERN (MongoDB, Express, React, Node.js) stack application in seconds. Choose between JavaScript or TypeScript, get automatic path aliases, MongoDB integration, and start coding immediately.
 
 ## ✨ Features
@@ -44,12 +50,6 @@ QuickStart MERN is a powerful CLI tool that generates a complete, production-rea
 - **Hot Reload**: Instant feedback during development
 - **Concurrency**: Run client and server simultaneously
 - **Custom Ports**: Configure ports to avoid conflicts
-
-## 📦 Installation
-
-```bash
-npx quickstart-mern
-```
 
 ## 🎮 Usage
 
