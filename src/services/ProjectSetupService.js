@@ -201,7 +201,7 @@ export class ProjectSetupService {
       return;
     }
 
-    await this.setupConcurrently();
+    this.concurrentlyReady = await this.setupConcurrently();
     await this.configurePorts();
     await this.createProjectFiles();
     await this.installAndRun();
@@ -272,6 +272,7 @@ export class ProjectSetupService {
       try {
         updateEnvFiles(clientEnvPath, serverEnvPath, this.ports);
         log.success("Environment files updated with custom ports");
+        log.info("Backend port is set in server/.env (PORT); frontend port is used by the dev script.");
       } catch (error) {
         log.error(`Failed to update environment files: ${error.message}`);
         process.exit(1);
@@ -304,8 +305,19 @@ export class ProjectSetupService {
       return;
     }
 
-    if (this.shouldRun) {
+    if (this.shouldRun && this.concurrentlyReady) {
       await startDevelopmentServers(this.ports);
+    } else if (this.shouldRun && !this.concurrentlyReady) {
+      console.log();
+      log.warning("Skipping auto-start because 'concurrently' is not available.");
+      log.step("To run client and server together, install concurrently then run:");
+      console.log(chalk.green("  npm install -g concurrently"));
+      console.log(chalk.green(`  cd ${this.projectName}`));
+      console.log(chalk.green("  npm run dev"));
+      console.log();
+      log.info("Or run client and server in separate terminals:");
+      console.log(chalk.green("  cd client && npm run dev"));
+      console.log(chalk.green("  cd server && npm run dev"));
     } else {
       console.log();
       log.success("Setup completed successfully!");

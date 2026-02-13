@@ -112,8 +112,7 @@ my-awesome-app/
 │   ├── package.json         # Frontend dependencies
 │   ├── vite.config.ts       # Vite configuration with @ aliases
 │   ├── tsconfig.json        # TypeScript configuration
-│   ├── tailwind.config.js   # TailwindCSS configuration
-│   └── .env                 # Frontend environment variables
+│   └── .env                 # Frontend environment variables (Tailwind 4 via @tailwindcss/vite)
 │
 ├── server/                   # Express backend application
 │   ├── src/
@@ -329,6 +328,10 @@ mongodb://username:password@host:port/database
 # or
 mongodb+srv://username:password@cluster.mongodb.net/database
 ```
+
+**Could not open VSCode for .env**
+
+If the CLI says it couldn’t open the `.env` file in VS Code, ensure the `code` command is in your PATH (e.g. install “Shell Command: Install ‘code’ command” from VS Code). Otherwise, open `server/.env` manually in your editor to set `MONGODB_URI`.
 
 **Permission Denied (Global Install)**
 

@@ -15,13 +15,13 @@ export async function promptProjectName() {
     const validation = validateProjectName(projectName);
     if (validation.valid) {
       nameValid = true;
-      log.success(`Project name: ${projectName}`);
+      const normalized = projectName.trim().toLowerCase();
+      log.success(`Project name: ${normalized}`);
+      return normalized;
     } else {
       log.error(validation.error);
     }
   }
-  
-  return projectName;
 }
 
 export async function promptLanguage() {
