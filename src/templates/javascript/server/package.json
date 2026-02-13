@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "build": "node --check src/server.js",
+    "start": "node -r dotenv/config src/server.js"
   },
   "keywords": [],
   "author": "",
